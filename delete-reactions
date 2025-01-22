@@ -1,0 +1,195 @@
+// Speed configurations
+const SPEEDS = {
+    HUMAN: {
+        name: 'Human Speed 🚶',
+        scroll: 2000,    // 2s for scrolling
+        click: 1500,     // 1.5s between clicks
+        load: 3000,      // 3s for loading content
+        base: 1000       // 1s for basic actions
+    },
+    SUPRA: {
+        name: 'Toyota Supra Speed 🏎️',
+        scroll: 200,     // 200ms for scrolling
+        click: 200,      // 200ms between clicks
+        load: 500,       // 500ms for loading content
+        base: 200        // 200ms for basic actions
+    }
+};
+
+// Current speed setting
+let currentSpeed = null;
+let scriptInitialized = false;
+
+// Function to change speed
+window.setDeleteSpeed = function(speedName) {
+    if (speedName.toUpperCase() === 'HUMAN') {
+        currentSpeed = SPEEDS.HUMAN;
+        console.log('Speed set to Human Speed 🚶');
+    } else if (speedName.toUpperCase() === 'SUPRA') {
+        currentSpeed = SPEEDS.SUPRA;
+        console.log('Speed set to Toyota Supra Speed 🏎️');
+    }
+    
+    // Start script if it hasn't been initialized yet
+    if (!scriptInitialized && currentSpeed) {
+        scriptInitialized = true;
+        init();
+    }
+};
+
+// Display speed selection prompt
+console.log(`
+Please select a speed mode by typing one of these commands:
+
+setDeleteSpeed('HUMAN')  - Human Speed 🚶 (Safer, more natural delays)
+setDeleteSpeed('SUPRA')  - Toyota Supra Speed 🏎️ (Very fast, may trigger rate limits)
+
+Example: setDeleteSpeed('HUMAN')
+`);
+
+function sleep(seconds) {
+    return new Promise(resolve => setTimeout(resolve, seconds * currentSpeed.base));
+}
+
+async function getReactionButtons() {
+    console.log("Scanning for reaction buttons...");
+    
+    // Look for the specific reaction structure you shared
+    const reactionButtons = Array.from(document.querySelectorAll('button')).filter(button => {
+        // Check for the reaction icon and text structure
+        const hasReactionIcon = button.querySelector('img.reactions-icon') !== null;
+        const hasReactionText = button.querySelector('.react-button__text, .social-action-button__text') !== null;
+        return hasReactionIcon && hasReactionText;
+    });
+    
+    console.log(`Found ${reactionButtons.length} reaction buttons`);
+    return reactionButtons;
+}
+
+async function removeReaction(button) {
+    try {
+        // Make sure the button is in view
+        button.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        await sleep(1);
+
+        console.log("Attempting to remove reaction...");
+        button.click();
+        await sleep(1.5);
+
+        return true;
+    } catch (error) {
+        console.error('Error removing reaction:', error);
+        return false;
+    }
+}
+
+async function findAndClickShowMoreButton() {
+    // Scroll to bottom first
+    window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+    });
+    await sleep(2);
+
+    // Find the "Show more results" button specifically
+    const showMoreButton = Array.from(document.querySelectorAll('button')).find(button => {
+        const text = button.textContent.trim();
+        return text === 'Show more results';
+    });
+
+    if (showMoreButton) {
+        console.log("Found 'Show more results' button, clicking...");
+        showMoreButton.click();
+        await sleep(3);
+        return true;
+    }
+
+    return false;
+}
+
+async function processCurrentReactions() {
+    const reactionButtons = await getReactionButtons();
+    
+    if (reactionButtons.length === 0) {
+        return false;
+    }
+
+    console.log(`Processing ${reactionButtons.length} reactions...`);
+    
+    for (const button of reactionButtons) {
+        try {
+            // Log the button we're trying to remove
+            console.log("Processing reaction:", button.textContent.trim());
+            
+            const removed = await removeReaction(button);
+            if (removed) {
+                console.log("Successfully removed reaction");
+                await sleep(1.5);
+            }
+        } catch (error) {
+            console.error('Error processing reaction:', error);
+        }
+    }
+
+    return true;
+}
+
+let stopScript = false;
+
+async function init() {
+    if (!currentSpeed) {
+        console.log("Please select a speed mode first!");
+        return;
+    }
+
+    console.log(`*** Starting reaction removal process with ${currentSpeed.name} ***`);
+    console.log("Please make sure you're on the page with your reactions.");
+    
+    let consecutiveEmptyAttempts = 0;
+    const MAX_EMPTY_ATTEMPTS = 3;
+
+    while (!stopScript) {
+        try {
+            // First process any visible reactions
+            const processedReactions = await processCurrentReactions();
+            
+            if (!processedReactions) {
+                // Only try to load more if we couldn't find any reactions to process
+                console.log("No reactions found in current view, trying to load more...");
+                const loadedMore = await findAndClickShowMoreButton();
+                
+                if (!loadedMore) {
+                    consecutiveEmptyAttempts++;
+                    if (consecutiveEmptyAttempts >= MAX_EMPTY_ATTEMPTS) {
+                        console.log("No more reactions found after multiple attempts. Finishing up...");
+                        break;
+                    }
+                } else {
+                    consecutiveEmptyAttempts = 0;
+                }
+                await sleep(currentSpeed.base/1000);
+            } else {
+                // Reset counter if we found and processed reactions
+                consecutiveEmptyAttempts = 0;
+                // Small delay before next batch
+                await sleep(currentSpeed.base/1000);
+            }
+        } catch (error) {
+            console.error('Error in deletion process:', error);
+            await sleep(currentSpeed.base/1000);
+        }
+    }
+    
+    console.log("*** Reaction removal process completed ***");
+}
+
+// Add ability to stop the script
+window.stopReactionDeletion = function() {
+    stopScript = true;
+    console.log("Stopping reaction deletion script...");
+};
+
+console.log("Script loaded! Type stopReactionDeletion() to stop the script at any time.");
+
+// Start the deletion process
+init();

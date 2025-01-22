@@ -1,21 +1,57 @@
-MIT License
+Personal Use License
 
-Copyright (c) 2025 dronelord
+Copyright (c) 2024
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any individual person obtaining a copy of this software and associated documentation files (the "Software"), to use the Software for personal, non-commercial purposes only, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Personal Use Only
+   - The Software may only be used for personal, non-commercial purposes
+   - Commercial use of any kind is strictly prohibited
+   - The Software may not be used by or on behalf of any organization, company, or commercial entity
+   - The Software may not be used to provide services to third parties or automated LinkedIn management services
+   - The Software may not be used in conjunction with any paid social media management tools
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Restrictions
+   - You may not sell, rent, lease, sublicense, distribute, redistribute, or transfer the Software or any derivatives
+   - You may not incorporate the Software or any part of it into a commercial product or service
+   - You may not modify the Software to create derivative works for commercial purposes
+   - You may not use the Software for any purpose that is directly or indirectly commercial
+   - You may not use the Software to build automated tools or bots for LinkedIn
+   - You may not bundle the Software with any commercial offerings
+
+3. Attribution
+   - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
+   - You must provide appropriate credit to the original creator when sharing or discussing the Software
+   - You may not suggest or imply that your use of the Software is endorsed by the original creator
+
+4. Personal Modifications
+   - You may modify the Software for your personal use
+   - Any modifications must also be subject to this same license
+   - Modified versions may not be redistributed without express permission
+   - You must clearly indicate any modifications made to the original Software
+   - You may not remove or modify any license or attribution notices
+
+5. Disclaimer
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. Termination
+   - This license automatically terminates if you violate any of these terms
+   - Upon termination, you must cease all use of the Software
+   - All provisions relating to disclaimers, limitations of liability, and restrictions shall survive termination
+   - The copyright holder reserves the right to terminate this license at any time
+   - Upon notification of termination, you must immediately cease all use of the Software
+
+7. Platform Compliance
+   - You acknowledge that you are responsible for using the Software in compliance with LinkedIn's terms of service
+   - The copyright holder is not responsible for any violations of LinkedIn's terms of service resulting from your use of the Software
+   - You acknowledge that the Software may need to be modified or cease functioning if LinkedIn's platform changes
+
+8. General
+   - If any provision of this license is held to be unenforceable or invalid, that provision will be enforced to the maximum extent possible, and the other provisions will remain in full force and effect
+   - This license shall be governed by and construed in accordance with the laws of your jurisdiction
+   - This license represents the entire agreement concerning the Software between you and the copyright holder
+   - The copyright holder reserves all rights not expressly granted to you in this license
+
+For permissions beyond the scope of this license, please contact the copyright holder.
+
+By using the Software, you acknowledge that you have read, understood, and agree to be bound by the terms of this license.
